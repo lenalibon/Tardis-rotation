@@ -21,11 +21,8 @@ void loop(void) {
 
   /* Get quaternion*/
   imu::Quaternion q = bno.getQuat();
-
-  /* Convert quaternion to euler angles */
   q.normalize();
   
-
   /* Provide quaternion data */
   Serial.print(F("Quaternion: "));
   Serial.print(q.w(), 5);
