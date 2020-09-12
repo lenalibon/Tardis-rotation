@@ -1,6 +1,6 @@
 import processing.serial.Serial;
 
-float x, y, z, s;
+float s, x, y, z;
 
 PShape tardis;
 PImage[] gif;
@@ -88,6 +88,8 @@ void serialEvent(Serial p)
   if ((inArray.length > 0) && (inArray[0].equals("Quaternion:"))) {
     // Print quaternion data
     println(in);
+    
+    // Save quatarnion data
     s = float(inArray[1]);
     x = float(inArray[2]);
     y = float(inArray[3]);
