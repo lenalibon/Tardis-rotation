@@ -85,12 +85,17 @@ void serialEvent(Serial p)
   String in = p.readString();
   
   String[] inArray = split(in, " ");
-  if ((inArray.length > 0) && (inArray[0].equals("Orientation:"))) {
+  
+  // Save euler data
+  if ((inArray.length > 0) && (inArray[0].equals("Euler:"))) {
     roll  = float(inArray[1]); // Roll-Angle = Rotation about the x-axis
     pitch = float(inArray[2]); // Pitch-Angle = Rotation about the y-axis 
     yaw   = float(inArray[3]); // Yaw-Angle = Rotation about the z-axis 
   } else if ((inArray.length > 0) && (inArray[0].equals("Quaternion:"))) {
     // Print quaternion data
     println(in);
+  } else if ((inArray.length > 0) && (inArray[0].equals("Calibration:"))) {
+    // Print calibration information 
+    println(in)
   }
 }
