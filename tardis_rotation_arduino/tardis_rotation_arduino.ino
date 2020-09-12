@@ -22,6 +22,10 @@ void loop(void) {
   /* Get quaternion*/
   imu::Quaternion q = bno.getQuat();
 
+  /* Convert quaternion to euler angles */
+  q.normalize();
+  
+
   /* Provide quaternion data */
   Serial.print(F("Quaternion: "));
   Serial.print(q.w(), 5);
@@ -32,20 +36,7 @@ void loop(void) {
   Serial.print(F(" "));
   Serial.print(q.z(), 5);
   Serial.println(F(""));
-
-  /* Convert quaternion to euler angles */
-  q.normalize();
-  imu::Vector<3> euler = q.toEuler();
-
-  /* Provide euler data */
-  Serial.print(F("Euler: "));
-  Serial.print(-180/M_PI * euler.x()); 
-  Serial.print(F(" "));
-  Serial.print(-180/M_PI * euler.y());
-  Serial.print(F(" "));
-  Serial.print(-180/M_PI * euler.z());
-  Serial.println(F(""));
-
+  
   /* Provide calibration data */
   uint8_t sys, gyro, accel, mag = 0;
   bno.getCalibration(&sys, &gyro, &accel, &mag);

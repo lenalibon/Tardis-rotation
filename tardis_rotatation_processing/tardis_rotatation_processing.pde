@@ -1,8 +1,6 @@
 import processing.serial.Serial;
 
-float roll  = 0.0;
-float pitch = 0.0;
-float yaw   = 0.0;
+float x, y, z, s;
 
 PShape tardis;
 PImage[] gif;
@@ -72,10 +70,11 @@ void draw()
   pointLight(255, 255, 255, 500, 400, -500);
 
 
-  // Rotate tardis
-  rotateZ(radians(yaw));
-  rotateX(radians(pitch));
-  rotateY(radians(roll));
+  // Rotate tardis              
+  applyMatrix(y*y- z*z + s*s - x*x, 2*(y*z - s*x), 2*(x*y + s*z), 0, 
+              2*(y*z + s*x), z*z - y*y - x*x + s*s, 2*(x*z - s*y), 0, 
+              2*(x*y - s*z), 2*(x*z + s*y), x*x + s*s - z*z - y*y, 0, 
+              0, 0, 0, 1);
 
   shape(tardis, 0, 0);
 }
@@ -86,16 +85,15 @@ void serialEvent(Serial p)
   
   String[] inArray = split(in, " ");
   
-  // Save euler data
-  if ((inArray.length > 0) && (inArray[0].equals("Euler:"))) {
-    roll  = float(inArray[1]); // Roll-Angle = Rotation about the x-axis
-    pitch = float(inArray[2]); // Pitch-Angle = Rotation about the y-axis 
-    yaw   = float(inArray[3]); // Yaw-Angle = Rotation about the z-axis 
-  } else if ((inArray.length > 0) && (inArray[0].equals("Quaternion:"))) {
+  if ((inArray.length > 0) && (inArray[0].equals("Quaternion:"))) {
     // Print quaternion data
     println(in);
+    s = float(inArray[1]);
+    x = float(inArray[2]);
+    y = float(inArray[3]);
+    z = float(inArray[4]);
   } else if ((inArray.length > 0) && (inArray[0].equals("Calibration:"))) {
     // Print calibration information 
-    println(in)
+    println(in);
   }
 }
