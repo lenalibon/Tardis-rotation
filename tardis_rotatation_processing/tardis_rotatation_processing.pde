@@ -15,7 +15,7 @@ void setup()
 
   // Load Tardis 
   frameRate(30);
-  tardis = loadShape("Doctor_Who_Tardisneu.obj");
+  tardis = loadShape("Doctor_Who_Tardis.obj");
 
   // Set up background 
   gif = new PImage[240];
