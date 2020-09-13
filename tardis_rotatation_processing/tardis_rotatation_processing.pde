@@ -1,5 +1,6 @@
 import processing.serial.Serial;
 
+// Quaternion data
 float s, x, y, z;
 
 PShape tardis;
@@ -76,13 +77,13 @@ void draw()
               2*(x*y - s*z), 2*(s*y + x*z), s*s + x*x - y*y - z*z, 0, 
               0, 0, 0, 1);
 
+  // Refresh view
   shape(tardis, 0, 0);
 }
 
 void serialEvent(Serial p) 
 {
   String in = p.readString();
-  
   String[] inArray = split(in, " ");
   
   if ((inArray.length > 0) && (inArray[0].equals("Quaternion:"))) {
