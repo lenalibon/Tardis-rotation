@@ -71,9 +71,9 @@ void draw()
 
 
   // Rotate tardis              
-  applyMatrix(y*y- z*z + s*s - x*x, 2*(y*z - s*x), 2*(x*y + s*z), 0, 
-              2*(y*z + s*x), z*z - y*y - x*x + s*s, 2*(x*z - s*y), 0, 
-              2*(x*y - s*z), 2*(x*z + s*y), x*x + s*s - z*z - y*y, 0, 
+  applyMatrix(s*s - x*x + y*y- z*z, 2*(y*z - s*x), 2*(x*y + s*z), 0, 
+              -2*(s*x + y*z), -(s*s - x*x - y*y + z*z) , -2*(x*z - s*y), 0, 
+              2*(x*y - s*z), 2*(s*y + x*z), s*s + x*x - y*y - z*z, 0, 
               0, 0, 0, 1);
 
   shape(tardis, 0, 0);
