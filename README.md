@@ -8,3 +8,4 @@ Motion Capture mit einem Arduino und dem Adafruit BNO055 mit Hilfe von Quaternio
 <img src="https://user-images.githubusercontent.com/56199607/93861676-323d7e80-fcc1-11ea-919b-58b3cb857477.png" alt="ergebnis" width="400">
 
 ## Video
+Das Video, das dieses Projekt genauer veranschaulicht, findet sich [hier](https://github.com/lenaaa-l/Tardis-rotation/tree/master/video).
